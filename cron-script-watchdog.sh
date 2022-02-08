@@ -9,14 +9,15 @@ result=""
 user=lalgroot
 
 # Set true to always email the result.  Else will only email if error.
-alwaysemail=false
-#alwaysemail=true
+#alwaysemail=false
+alwaysemail=true
 
 
 for dir in $list     		# loop through directories
 do
 	site=${dir%*/}; site="${site##*/}"	# Strip both ends to leave e.g d9ref, or www
 	cd $dir
+	dir=${dir%/}
 	
 	api=""
 	if [ $site = "www" ]; then
