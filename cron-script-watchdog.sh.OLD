@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Run at 6 to 12 hour intervals for Live system only
+# Runs the Lalg-Watchdog to check that Scheduled Jobs don't get disabled.
+
+dir1=~/www/www
+
+user=lalgroot
+
+cd $dir1
+a=`php73.cli ~/private/tools/cv --user=$user api LalgWatchdog.run`
+
+# To send email only when there is an error, use this line:
+#if echo $a | grep -qv '"is_error": 0'; then echo $dir1; echo -e ${a//','/'\n'} | grep -v "count\|version\|is_error"; fi
+
+# To send email each time it is run, use this line:
+echo $dir1; echo -e ${a//','/'\n'} | grep -v "count\|version\|is_error";  
